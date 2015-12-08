@@ -1,0 +1,11 @@
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\bin\Debug\FernCashHandlerTest.exe
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\bin\Debug\FernCashHandlerTest.pdb
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\obj\Debug\FernCashHandlerTest.csprojResolveAssemblyReference.cache
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\obj\Debug\FernCashHandlerTest.Form1.resources
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\obj\Debug\FernCashHandlerTest.Properties.Resources.resources
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\obj\Debug\FernCashHandlerTest.csproj.GenerateResource.Cache
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\obj\Debug\FernCashHandlerTest.exe
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\obj\Debug\FernCashHandlerTest.pdb
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\bin\Debug\FernCashHandler.dll
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\bin\Debug\FernCashHandler.pdb
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandlerTest\bin\Debug\FernCashHandlerTest.exe.config

@@ -1,0 +1,6 @@
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandler\bin\Debug\FernCashHandler.dll.config
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandler\bin\Debug\FernCashHandler.dll
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandler\bin\Debug\FernCashHandler.pdb
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandler\obj\Debug\FernCashHandler.dll
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandler\obj\Debug\FernCashHandler.pdb
+C:\Users\johnh\documents\visual studio 2013\Projects\CashHandler\FernCashHandler\obj\Debug\FernCashHandler.csprojResolveAssemblyReference.cache

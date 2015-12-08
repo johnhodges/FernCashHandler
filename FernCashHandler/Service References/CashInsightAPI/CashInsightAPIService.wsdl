@@ -1,0 +1,2873 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ax21="http://data.api.core.tyche.lutzwolf.com/xsd" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns="http://api.core.tyche.lutzwolf.com" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://api.core.tyche.lutzwolf.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>CashInsightAPIService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://data.api.core.tyche.lutzwolf.com/xsd">
+      <xs:complexType name="DeviceList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="ax21:Device" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Device">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deviceControllerHost" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="deviceControllerPort" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:int" />
+          <xs:element minOccurs="0" name="workstation" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StandardResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="extendedErrorText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="extendedHint" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="extendedResult" type="xs:int" />
+          <xs:element minOccurs="0" name="hint" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="level" type="xs:int" />
+          <xs:element minOccurs="0" name="resultCode" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SearchParameters">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax21:DeviceList" />
+          <xs:element minOccurs="0" name="endDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="noteText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="startDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="JournalListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:JournalList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="JournalList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="ax21:Journal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Journal">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:long" />
+          <xs:element minOccurs="0" name="approval" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="details" nillable="true" type="ax21:JournalDetailList" />
+          <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="startTime" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="typeId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="JournalDetailList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="ax21:JournalDetail" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="JournalDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:long" />
+          <xs:element minOccurs="0" name="calendarEventTime" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="deviceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="deviceTypeId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="errorCode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="errorLevel" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="typeId" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StringListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="count" type="xs:int" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="StringResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="LocalDeviceListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:LocalDeviceList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="LocalDeviceList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="ax21:LocalDevice" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LocalDevice">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:Device">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="position" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CashUnitDataListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:CashUnitDataList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CashUnitDataList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="ax21:CashUnitData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CashUnitData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:long" />
+          <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fit" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="noteStack" nillable="true" type="ax21:CashBundle" />
+          <xs:element minOccurs="0" name="position" type="xs:int" />
+          <xs:element minOccurs="0" name="status" type="xs:int" />
+          <xs:element minOccurs="0" name="threshold" type="xs:int" />
+          <xs:element minOccurs="0" name="unitId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CashBundle">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" name="value" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DenominationResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:Denomination" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Denomination">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" nillable="true" type="ax21:DenominationItem" />
+          <xs:element minOccurs="0" name="length" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DenominationItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fit" type="xs:boolean" />
+          <xs:element minOccurs="0" name="type" type="xs:int" />
+          <xs:element minOccurs="0" name="value" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeviceStateResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:DeviceState" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="DeviceState">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="available" type="xs:boolean" />
+          <xs:element minOccurs="0" name="disabled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="locked" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeviceListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:DeviceList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="IntegerListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:IntegerList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="IntegerList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="list" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MixResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:Mix" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Mix">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="mix" nillable="true" type="ax21:Denomination" />
+          <xs:element minOccurs="0" name="remainder" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CountingResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:Denomination" />
+              <xs:element minOccurs="0" name="doubleNotes" type="xs:int" />
+              <xs:element minOccurs="0" name="purgeRequired" type="xs:boolean" />
+              <xs:element minOccurs="0" name="unrecognizedNotes" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CalendarListResult">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:StandardResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" nillable="true" type="ax21:CalendarList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CalendarList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="data" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ax22="http://data.api.core.tyche.lutzwolf.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://api.core.tyche.lutzwolf.com">
+      <xs:import namespace="http://data.api.core.tyche.lutzwolf.com/xsd" />
+      <xs:element name="workstationConfig">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="workstationConfigResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unlockDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unlockDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transactionSearch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="searchParameters" nillable="true" type="ax22:SearchParameters" />
+            <xs:element minOccurs="0" name="details" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transactionSearchResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:JournalListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transactionList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="startTime" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="details" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transactionListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:JournalListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="systemStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="systemStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startTransactionWithEncryptedPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:base64Binary" />
+            <xs:element minOccurs="0" name="type" type="xs:int" />
+            <xs:element minOccurs="0" name="encryptionScheme" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startTransactionWithEncryptedPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startTransaction">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="type" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startTransactionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDispenseTransactionWithEncryptedPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:base64Binary" />
+            <xs:element minOccurs="0" name="encryptionScheme" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDispenseTransactionWithEncryptedPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDispenseTransaction">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDispenseTransactionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDepositTransactionWithEncryptedPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:base64Binary" />
+            <xs:element minOccurs="0" name="encryptionScheme" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDepositTransactionWithEncryptedPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDepositTransaction">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startDepositTransactionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startCountingTransactionWithEncryptedPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:base64Binary" />
+            <xs:element minOccurs="0" name="encryptionScheme" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startCountingTransactionWithEncryptedPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startCountingTransaction">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="deviceList" nillable="true" type="ax22:DeviceList" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="startCountingTransactionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setNote">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setNoteResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveLocalDevices">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="workstation" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveLocalDevicesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:LocalDeviceListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveInventory">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveInventoryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CashUnitDataListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveDispensableInventory">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveDispensableInventoryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DenominationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveDeviceState">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retrieveDeviceStateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DeviceStateResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reset">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+            <xs:element minOccurs="0" name="keepReservation" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="resetResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reserveDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reserveDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="releaseDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="releaseDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="raiseLifts">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="raiseLiftsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="lowerLifts">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="lowerLiftsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logonWithEncryptedPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="encryptedPassword" nillable="true" type="xs:base64Binary" />
+            <xs:element minOccurs="0" name="useActiveDirectory" type="xs:boolean" />
+            <xs:element minOccurs="0" name="encryptionScheme" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logonWithEncryptedPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logon">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="useActiveDirectory" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logonResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logoff">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logoffResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="lockDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="lockDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listDevices">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listDevicesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DeviceListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getNote">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getNoteResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMixes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMixesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:IntegerListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="generateMix">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+            <xs:element minOccurs="0" name="algorithm" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="generateMixResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:MixResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="freeDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="freeDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="endTransaction">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionState" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="endTransactionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="enableDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="enableDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="emptyDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="cashUnitIds" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="position" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="emptyDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DenominationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dispense">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="denomination" nillable="true" type="ax22:Denomination" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dispenseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DenominationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="disableDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="disableDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deviceSummary">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="startTime" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="details" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deviceSummaryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:JournalListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="count">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+            <xs:element minOccurs="0" name="bundleSize" type="xs:int" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="stopMode" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="countResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CountingResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashboxDispense">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashboxDispenseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashboxDeposit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="amount" type="xs:long" />
+            <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashboxDepositResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInStart">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInStartResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInRollback">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInRollbackResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DenominationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInEnd">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInEndResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DenominationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashIn">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="transactionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="device" nillable="true" type="ax22:Device" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cashInResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DenominationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="businessSessionList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="businessSessionListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CalendarListResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="businessSessionData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="startTime" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="businessSessionDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StringResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="balanceUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="balanceUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StandardResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="cashInStartRequest">
+    <wsdl:part name="parameters" element="ns:cashInStart" />
+  </wsdl:message>
+  <wsdl:message name="cashInStartResponse">
+    <wsdl:part name="parameters" element="ns:cashInStartResponse" />
+  </wsdl:message>
+  <wsdl:message name="startTransactionRequest">
+    <wsdl:part name="parameters" element="ns:startTransaction" />
+  </wsdl:message>
+  <wsdl:message name="startTransactionResponse">
+    <wsdl:part name="parameters" element="ns:startTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="countRequest">
+    <wsdl:part name="parameters" element="ns:count" />
+  </wsdl:message>
+  <wsdl:message name="countResponse">
+    <wsdl:part name="parameters" element="ns:countResponse" />
+  </wsdl:message>
+  <wsdl:message name="listDevicesRequest">
+    <wsdl:part name="parameters" element="ns:listDevices" />
+  </wsdl:message>
+  <wsdl:message name="listDevicesResponse">
+    <wsdl:part name="parameters" element="ns:listDevicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="cashInRollbackRequest">
+    <wsdl:part name="parameters" element="ns:cashInRollback" />
+  </wsdl:message>
+  <wsdl:message name="cashInRollbackResponse">
+    <wsdl:part name="parameters" element="ns:cashInRollbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="retrieveInventoryRequest">
+    <wsdl:part name="parameters" element="ns:retrieveInventory" />
+  </wsdl:message>
+  <wsdl:message name="retrieveInventoryResponse">
+    <wsdl:part name="parameters" element="ns:retrieveInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="logoffRequest">
+    <wsdl:part name="parameters" element="ns:logoff" />
+  </wsdl:message>
+  <wsdl:message name="logoffResponse">
+    <wsdl:part name="parameters" element="ns:logoffResponse" />
+  </wsdl:message>
+  <wsdl:message name="transactionSearchRequest">
+    <wsdl:part name="parameters" element="ns:transactionSearch" />
+  </wsdl:message>
+  <wsdl:message name="transactionSearchResponse">
+    <wsdl:part name="parameters" element="ns:transactionSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="getNoteRequest">
+    <wsdl:part name="parameters" element="ns:getNote" />
+  </wsdl:message>
+  <wsdl:message name="getNoteResponse">
+    <wsdl:part name="parameters" element="ns:getNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="disableDeviceRequest">
+    <wsdl:part name="parameters" element="ns:disableDevice" />
+  </wsdl:message>
+  <wsdl:message name="disableDeviceResponse">
+    <wsdl:part name="parameters" element="ns:disableDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="emptyDeviceRequest">
+    <wsdl:part name="parameters" element="ns:emptyDevice" />
+  </wsdl:message>
+  <wsdl:message name="emptyDeviceResponse">
+    <wsdl:part name="parameters" element="ns:emptyDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="releaseDeviceRequest">
+    <wsdl:part name="parameters" element="ns:releaseDevice" />
+  </wsdl:message>
+  <wsdl:message name="releaseDeviceResponse">
+    <wsdl:part name="parameters" element="ns:releaseDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="startCountingTransactionRequest">
+    <wsdl:part name="parameters" element="ns:startCountingTransaction" />
+  </wsdl:message>
+  <wsdl:message name="startCountingTransactionResponse">
+    <wsdl:part name="parameters" element="ns:startCountingTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="dispenseRequest">
+    <wsdl:part name="parameters" element="ns:dispense" />
+  </wsdl:message>
+  <wsdl:message name="dispenseResponse">
+    <wsdl:part name="parameters" element="ns:dispenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="businessSessionListRequest">
+    <wsdl:part name="parameters" element="ns:businessSessionList" />
+  </wsdl:message>
+  <wsdl:message name="businessSessionListResponse">
+    <wsdl:part name="parameters" element="ns:businessSessionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="startTransactionWithEncryptedPasswordRequest">
+    <wsdl:part name="parameters" element="ns:startTransactionWithEncryptedPassword" />
+  </wsdl:message>
+  <wsdl:message name="startTransactionWithEncryptedPasswordResponse">
+    <wsdl:part name="parameters" element="ns:startTransactionWithEncryptedPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="startDispenseTransactionRequest">
+    <wsdl:part name="parameters" element="ns:startDispenseTransaction" />
+  </wsdl:message>
+  <wsdl:message name="startDispenseTransactionResponse">
+    <wsdl:part name="parameters" element="ns:startDispenseTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="cashInEndRequest">
+    <wsdl:part name="parameters" element="ns:cashInEnd" />
+  </wsdl:message>
+  <wsdl:message name="cashInEndResponse">
+    <wsdl:part name="parameters" element="ns:cashInEndResponse" />
+  </wsdl:message>
+  <wsdl:message name="systemStatusRequest">
+    <wsdl:part name="parameters" element="ns:systemStatus" />
+  </wsdl:message>
+  <wsdl:message name="systemStatusResponse">
+    <wsdl:part name="parameters" element="ns:systemStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="unlockDeviceRequest">
+    <wsdl:part name="parameters" element="ns:unlockDevice" />
+  </wsdl:message>
+  <wsdl:message name="unlockDeviceResponse">
+    <wsdl:part name="parameters" element="ns:unlockDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="businessSessionDataRequest">
+    <wsdl:part name="parameters" element="ns:businessSessionData" />
+  </wsdl:message>
+  <wsdl:message name="businessSessionDataResponse">
+    <wsdl:part name="parameters" element="ns:businessSessionDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="reserveDeviceRequest">
+    <wsdl:part name="parameters" element="ns:reserveDevice" />
+  </wsdl:message>
+  <wsdl:message name="reserveDeviceResponse">
+    <wsdl:part name="parameters" element="ns:reserveDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="retrieveDispensableInventoryRequest">
+    <wsdl:part name="parameters" element="ns:retrieveDispensableInventory" />
+  </wsdl:message>
+  <wsdl:message name="retrieveDispensableInventoryResponse">
+    <wsdl:part name="parameters" element="ns:retrieveDispensableInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="setNoteRequest">
+    <wsdl:part name="parameters" element="ns:setNote" />
+  </wsdl:message>
+  <wsdl:message name="setNoteResponse">
+    <wsdl:part name="parameters" element="ns:setNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="startDepositTransactionRequest">
+    <wsdl:part name="parameters" element="ns:startDepositTransaction" />
+  </wsdl:message>
+  <wsdl:message name="startDepositTransactionResponse">
+    <wsdl:part name="parameters" element="ns:startDepositTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="lockDeviceRequest">
+    <wsdl:part name="parameters" element="ns:lockDevice" />
+  </wsdl:message>
+  <wsdl:message name="lockDeviceResponse">
+    <wsdl:part name="parameters" element="ns:lockDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="enableDeviceRequest">
+    <wsdl:part name="parameters" element="ns:enableDevice" />
+  </wsdl:message>
+  <wsdl:message name="enableDeviceResponse">
+    <wsdl:part name="parameters" element="ns:enableDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="startDepositTransactionWithEncryptedPasswordRequest">
+    <wsdl:part name="parameters" element="ns:startDepositTransactionWithEncryptedPassword" />
+  </wsdl:message>
+  <wsdl:message name="startDepositTransactionWithEncryptedPasswordResponse">
+    <wsdl:part name="parameters" element="ns:startDepositTransactionWithEncryptedPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="freeDeviceRequest">
+    <wsdl:part name="parameters" element="ns:freeDevice" />
+  </wsdl:message>
+  <wsdl:message name="freeDeviceResponse">
+    <wsdl:part name="parameters" element="ns:freeDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="balanceUserRequest">
+    <wsdl:part name="parameters" element="ns:balanceUser" />
+  </wsdl:message>
+  <wsdl:message name="balanceUserResponse">
+    <wsdl:part name="parameters" element="ns:balanceUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="lowerLiftsRequest">
+    <wsdl:part name="parameters" element="ns:lowerLifts" />
+  </wsdl:message>
+  <wsdl:message name="lowerLiftsResponse">
+    <wsdl:part name="parameters" element="ns:lowerLiftsResponse" />
+  </wsdl:message>
+  <wsdl:message name="cashInRequest">
+    <wsdl:part name="parameters" element="ns:cashIn" />
+  </wsdl:message>
+  <wsdl:message name="cashInResponse">
+    <wsdl:part name="parameters" element="ns:cashInResponse" />
+  </wsdl:message>
+  <wsdl:message name="deviceSummaryRequest">
+    <wsdl:part name="parameters" element="ns:deviceSummary" />
+  </wsdl:message>
+  <wsdl:message name="deviceSummaryResponse">
+    <wsdl:part name="parameters" element="ns:deviceSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="startCountingTransactionWithEncryptedPasswordRequest">
+    <wsdl:part name="parameters" element="ns:startCountingTransactionWithEncryptedPassword" />
+  </wsdl:message>
+  <wsdl:message name="startCountingTransactionWithEncryptedPasswordResponse">
+    <wsdl:part name="parameters" element="ns:startCountingTransactionWithEncryptedPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="transactionListRequest">
+    <wsdl:part name="parameters" element="ns:transactionList" />
+  </wsdl:message>
+  <wsdl:message name="transactionListResponse">
+    <wsdl:part name="parameters" element="ns:transactionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMixesRequest">
+    <wsdl:part name="parameters" element="ns:getMixes" />
+  </wsdl:message>
+  <wsdl:message name="getMixesResponse">
+    <wsdl:part name="parameters" element="ns:getMixesResponse" />
+  </wsdl:message>
+  <wsdl:message name="cashboxDispenseRequest">
+    <wsdl:part name="parameters" element="ns:cashboxDispense" />
+  </wsdl:message>
+  <wsdl:message name="cashboxDispenseResponse">
+    <wsdl:part name="parameters" element="ns:cashboxDispenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="raiseLiftsRequest">
+    <wsdl:part name="parameters" element="ns:raiseLifts" />
+  </wsdl:message>
+  <wsdl:message name="raiseLiftsResponse">
+    <wsdl:part name="parameters" element="ns:raiseLiftsResponse" />
+  </wsdl:message>
+  <wsdl:message name="retrieveLocalDevicesRequest">
+    <wsdl:part name="parameters" element="ns:retrieveLocalDevices" />
+  </wsdl:message>
+  <wsdl:message name="retrieveLocalDevicesResponse">
+    <wsdl:part name="parameters" element="ns:retrieveLocalDevicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="retrieveDeviceStateRequest">
+    <wsdl:part name="parameters" element="ns:retrieveDeviceState" />
+  </wsdl:message>
+  <wsdl:message name="retrieveDeviceStateResponse">
+    <wsdl:part name="parameters" element="ns:retrieveDeviceStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="endTransactionRequest">
+    <wsdl:part name="parameters" element="ns:endTransaction" />
+  </wsdl:message>
+  <wsdl:message name="endTransactionResponse">
+    <wsdl:part name="parameters" element="ns:endTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="startDispenseTransactionWithEncryptedPasswordRequest">
+    <wsdl:part name="parameters" element="ns:startDispenseTransactionWithEncryptedPassword" />
+  </wsdl:message>
+  <wsdl:message name="startDispenseTransactionWithEncryptedPasswordResponse">
+    <wsdl:part name="parameters" element="ns:startDispenseTransactionWithEncryptedPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="logonWithEncryptedPasswordRequest">
+    <wsdl:part name="parameters" element="ns:logonWithEncryptedPassword" />
+  </wsdl:message>
+  <wsdl:message name="logonWithEncryptedPasswordResponse">
+    <wsdl:part name="parameters" element="ns:logonWithEncryptedPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="workstationConfigRequest">
+    <wsdl:part name="parameters" element="ns:workstationConfig" />
+  </wsdl:message>
+  <wsdl:message name="workstationConfigResponse">
+    <wsdl:part name="parameters" element="ns:workstationConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="resetRequest">
+    <wsdl:part name="parameters" element="ns:reset" />
+  </wsdl:message>
+  <wsdl:message name="resetResponse">
+    <wsdl:part name="parameters" element="ns:resetResponse" />
+  </wsdl:message>
+  <wsdl:message name="cashboxDepositRequest">
+    <wsdl:part name="parameters" element="ns:cashboxDeposit" />
+  </wsdl:message>
+  <wsdl:message name="cashboxDepositResponse">
+    <wsdl:part name="parameters" element="ns:cashboxDepositResponse" />
+  </wsdl:message>
+  <wsdl:message name="logonRequest">
+    <wsdl:part name="parameters" element="ns:logon" />
+  </wsdl:message>
+  <wsdl:message name="logonResponse">
+    <wsdl:part name="parameters" element="ns:logonResponse" />
+  </wsdl:message>
+  <wsdl:message name="generateMixRequest">
+    <wsdl:part name="parameters" element="ns:generateMix" />
+  </wsdl:message>
+  <wsdl:message name="generateMixResponse">
+    <wsdl:part name="parameters" element="ns:generateMixResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CashInsightAPIServicePortType">
+    <wsdl:operation name="cashInStart">
+      <wsdl:input wsaw:Action="urn:cashInStart" message="ns:cashInStartRequest" />
+      <wsdl:output wsaw:Action="urn:cashInStartResponse" message="ns:cashInStartResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <wsdl:input wsaw:Action="urn:startTransaction" message="ns:startTransactionRequest" />
+      <wsdl:output wsaw:Action="urn:startTransactionResponse" message="ns:startTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="count">
+      <wsdl:input wsaw:Action="urn:count" message="ns:countRequest" />
+      <wsdl:output wsaw:Action="urn:countResponse" message="ns:countResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listDevices">
+      <wsdl:input wsaw:Action="urn:listDevices" message="ns:listDevicesRequest" />
+      <wsdl:output wsaw:Action="urn:listDevicesResponse" message="ns:listDevicesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cashInRollback">
+      <wsdl:input wsaw:Action="urn:cashInRollback" message="ns:cashInRollbackRequest" />
+      <wsdl:output wsaw:Action="urn:cashInRollbackResponse" message="ns:cashInRollbackResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInventory">
+      <wsdl:input wsaw:Action="urn:retrieveInventory" message="ns:retrieveInventoryRequest" />
+      <wsdl:output wsaw:Action="urn:retrieveInventoryResponse" message="ns:retrieveInventoryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logoff">
+      <wsdl:input wsaw:Action="urn:logoff" message="ns:logoffRequest" />
+      <wsdl:output wsaw:Action="urn:logoffResponse" message="ns:logoffResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="transactionSearch">
+      <wsdl:input wsaw:Action="urn:transactionSearch" message="ns:transactionSearchRequest" />
+      <wsdl:output wsaw:Action="urn:transactionSearchResponse" message="ns:transactionSearchResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getNote">
+      <wsdl:input wsaw:Action="urn:getNote" message="ns:getNoteRequest" />
+      <wsdl:output wsaw:Action="urn:getNoteResponse" message="ns:getNoteResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="disableDevice">
+      <wsdl:input wsaw:Action="urn:disableDevice" message="ns:disableDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:disableDeviceResponse" message="ns:disableDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="emptyDevice">
+      <wsdl:input wsaw:Action="urn:emptyDevice" message="ns:emptyDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:emptyDeviceResponse" message="ns:emptyDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="releaseDevice">
+      <wsdl:input wsaw:Action="urn:releaseDevice" message="ns:releaseDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:releaseDeviceResponse" message="ns:releaseDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransaction">
+      <wsdl:input wsaw:Action="urn:startCountingTransaction" message="ns:startCountingTransactionRequest" />
+      <wsdl:output wsaw:Action="urn:startCountingTransactionResponse" message="ns:startCountingTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="dispense">
+      <wsdl:input wsaw:Action="urn:dispense" message="ns:dispenseRequest" />
+      <wsdl:output wsaw:Action="urn:dispenseResponse" message="ns:dispenseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionList">
+      <wsdl:input wsaw:Action="urn:businessSessionList" message="ns:businessSessionListRequest" />
+      <wsdl:output wsaw:Action="urn:businessSessionListResponse" message="ns:businessSessionListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startTransactionWithEncryptedPassword">
+      <wsdl:input wsaw:Action="urn:startTransactionWithEncryptedPassword" message="ns:startTransactionWithEncryptedPasswordRequest" />
+      <wsdl:output wsaw:Action="urn:startTransactionWithEncryptedPasswordResponse" message="ns:startTransactionWithEncryptedPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransaction">
+      <wsdl:input wsaw:Action="urn:startDispenseTransaction" message="ns:startDispenseTransactionRequest" />
+      <wsdl:output wsaw:Action="urn:startDispenseTransactionResponse" message="ns:startDispenseTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cashInEnd">
+      <wsdl:input wsaw:Action="urn:cashInEnd" message="ns:cashInEndRequest" />
+      <wsdl:output wsaw:Action="urn:cashInEndResponse" message="ns:cashInEndResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="systemStatus">
+      <wsdl:input wsaw:Action="urn:systemStatus" message="ns:systemStatusRequest" />
+      <wsdl:output wsaw:Action="urn:systemStatusResponse" message="ns:systemStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="unlockDevice">
+      <wsdl:input wsaw:Action="urn:unlockDevice" message="ns:unlockDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:unlockDeviceResponse" message="ns:unlockDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionData">
+      <wsdl:input wsaw:Action="urn:businessSessionData" message="ns:businessSessionDataRequest" />
+      <wsdl:output wsaw:Action="urn:businessSessionDataResponse" message="ns:businessSessionDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="reserveDevice">
+      <wsdl:input wsaw:Action="urn:reserveDevice" message="ns:reserveDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:reserveDeviceResponse" message="ns:reserveDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDispensableInventory">
+      <wsdl:input wsaw:Action="urn:retrieveDispensableInventory" message="ns:retrieveDispensableInventoryRequest" />
+      <wsdl:output wsaw:Action="urn:retrieveDispensableInventoryResponse" message="ns:retrieveDispensableInventoryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="setNote">
+      <wsdl:input wsaw:Action="urn:setNote" message="ns:setNoteRequest" />
+      <wsdl:output wsaw:Action="urn:setNoteResponse" message="ns:setNoteResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransaction">
+      <wsdl:input wsaw:Action="urn:startDepositTransaction" message="ns:startDepositTransactionRequest" />
+      <wsdl:output wsaw:Action="urn:startDepositTransactionResponse" message="ns:startDepositTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="lockDevice">
+      <wsdl:input wsaw:Action="urn:lockDevice" message="ns:lockDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:lockDeviceResponse" message="ns:lockDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="enableDevice">
+      <wsdl:input wsaw:Action="urn:enableDevice" message="ns:enableDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:enableDeviceResponse" message="ns:enableDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransactionWithEncryptedPassword">
+      <wsdl:input wsaw:Action="urn:startDepositTransactionWithEncryptedPassword" message="ns:startDepositTransactionWithEncryptedPasswordRequest" />
+      <wsdl:output wsaw:Action="urn:startDepositTransactionWithEncryptedPasswordResponse" message="ns:startDepositTransactionWithEncryptedPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="freeDevice">
+      <wsdl:input wsaw:Action="urn:freeDevice" message="ns:freeDeviceRequest" />
+      <wsdl:output wsaw:Action="urn:freeDeviceResponse" message="ns:freeDeviceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="balanceUser">
+      <wsdl:input wsaw:Action="urn:balanceUser" message="ns:balanceUserRequest" />
+      <wsdl:output wsaw:Action="urn:balanceUserResponse" message="ns:balanceUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="lowerLifts">
+      <wsdl:input wsaw:Action="urn:lowerLifts" message="ns:lowerLiftsRequest" />
+      <wsdl:output wsaw:Action="urn:lowerLiftsResponse" message="ns:lowerLiftsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cashIn">
+      <wsdl:input wsaw:Action="urn:cashIn" message="ns:cashInRequest" />
+      <wsdl:output wsaw:Action="urn:cashInResponse" message="ns:cashInResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deviceSummary">
+      <wsdl:input wsaw:Action="urn:deviceSummary" message="ns:deviceSummaryRequest" />
+      <wsdl:output wsaw:Action="urn:deviceSummaryResponse" message="ns:deviceSummaryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransactionWithEncryptedPassword">
+      <wsdl:input wsaw:Action="urn:startCountingTransactionWithEncryptedPassword" message="ns:startCountingTransactionWithEncryptedPasswordRequest" />
+      <wsdl:output wsaw:Action="urn:startCountingTransactionWithEncryptedPasswordResponse" message="ns:startCountingTransactionWithEncryptedPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="transactionList">
+      <wsdl:input wsaw:Action="urn:transactionList" message="ns:transactionListRequest" />
+      <wsdl:output wsaw:Action="urn:transactionListResponse" message="ns:transactionListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMixes">
+      <wsdl:input wsaw:Action="urn:getMixes" message="ns:getMixesRequest" />
+      <wsdl:output wsaw:Action="urn:getMixesResponse" message="ns:getMixesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDispense">
+      <wsdl:input wsaw:Action="urn:cashboxDispense" message="ns:cashboxDispenseRequest" />
+      <wsdl:output wsaw:Action="urn:cashboxDispenseResponse" message="ns:cashboxDispenseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="raiseLifts">
+      <wsdl:input wsaw:Action="urn:raiseLifts" message="ns:raiseLiftsRequest" />
+      <wsdl:output wsaw:Action="urn:raiseLiftsResponse" message="ns:raiseLiftsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="retrieveLocalDevices">
+      <wsdl:input wsaw:Action="urn:retrieveLocalDevices" message="ns:retrieveLocalDevicesRequest" />
+      <wsdl:output wsaw:Action="urn:retrieveLocalDevicesResponse" message="ns:retrieveLocalDevicesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDeviceState">
+      <wsdl:input wsaw:Action="urn:retrieveDeviceState" message="ns:retrieveDeviceStateRequest" />
+      <wsdl:output wsaw:Action="urn:retrieveDeviceStateResponse" message="ns:retrieveDeviceStateResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="endTransaction">
+      <wsdl:input wsaw:Action="urn:endTransaction" message="ns:endTransactionRequest" />
+      <wsdl:output wsaw:Action="urn:endTransactionResponse" message="ns:endTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransactionWithEncryptedPassword">
+      <wsdl:input wsaw:Action="urn:startDispenseTransactionWithEncryptedPassword" message="ns:startDispenseTransactionWithEncryptedPasswordRequest" />
+      <wsdl:output wsaw:Action="urn:startDispenseTransactionWithEncryptedPasswordResponse" message="ns:startDispenseTransactionWithEncryptedPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logonWithEncryptedPassword">
+      <wsdl:input wsaw:Action="urn:logonWithEncryptedPassword" message="ns:logonWithEncryptedPasswordRequest" />
+      <wsdl:output wsaw:Action="urn:logonWithEncryptedPasswordResponse" message="ns:logonWithEncryptedPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="workstationConfig">
+      <wsdl:input wsaw:Action="urn:workstationConfig" message="ns:workstationConfigRequest" />
+      <wsdl:output wsaw:Action="urn:workstationConfigResponse" message="ns:workstationConfigResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="reset">
+      <wsdl:input wsaw:Action="urn:reset" message="ns:resetRequest" />
+      <wsdl:output wsaw:Action="urn:resetResponse" message="ns:resetResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDeposit">
+      <wsdl:input wsaw:Action="urn:cashboxDeposit" message="ns:cashboxDepositRequest" />
+      <wsdl:output wsaw:Action="urn:cashboxDepositResponse" message="ns:cashboxDepositResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logon">
+      <wsdl:input wsaw:Action="urn:logon" message="ns:logonRequest" />
+      <wsdl:output wsaw:Action="urn:logonResponse" message="ns:logonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="generateMix">
+      <wsdl:input wsaw:Action="urn:generateMix" message="ns:generateMixRequest" />
+      <wsdl:output wsaw:Action="urn:generateMixResponse" message="ns:generateMixResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CashInsightAPIServiceSoap11Binding" type="ns:CashInsightAPIServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="cashInStart">
+      <soap:operation soapAction="urn:cashInStart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <soap:operation soapAction="urn:startTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="count">
+      <soap:operation soapAction="urn:count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listDevices">
+      <soap:operation soapAction="urn:listDevices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInventory">
+      <soap:operation soapAction="urn:retrieveInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashInRollback">
+      <soap:operation soapAction="urn:cashInRollback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoff">
+      <soap:operation soapAction="urn:logoff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionSearch">
+      <soap:operation soapAction="urn:transactionSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="emptyDevice">
+      <soap:operation soapAction="urn:emptyDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNote">
+      <soap:operation soapAction="urn:getNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransaction">
+      <soap:operation soapAction="urn:startCountingTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="releaseDevice">
+      <soap:operation soapAction="urn:releaseDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dispense">
+      <soap:operation soapAction="urn:dispense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableDevice">
+      <soap:operation soapAction="urn:disableDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTransactionWithEncryptedPassword">
+      <soap:operation soapAction="urn:startTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionList">
+      <soap:operation soapAction="urn:businessSessionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransaction">
+      <soap:operation soapAction="urn:startDispenseTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashInEnd">
+      <soap:operation soapAction="urn:cashInEnd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlockDevice">
+      <soap:operation soapAction="urn:unlockDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="systemStatus">
+      <soap:operation soapAction="urn:systemStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reserveDevice">
+      <soap:operation soapAction="urn:reserveDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionData">
+      <soap:operation soapAction="urn:businessSessionData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDispensableInventory">
+      <soap:operation soapAction="urn:retrieveDispensableInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setNote">
+      <soap:operation soapAction="urn:setNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransaction">
+      <soap:operation soapAction="urn:startDepositTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockDevice">
+      <soap:operation soapAction="urn:lockDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enableDevice">
+      <soap:operation soapAction="urn:enableDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="freeDevice">
+      <soap:operation soapAction="urn:freeDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="balanceUser">
+      <soap:operation soapAction="urn:balanceUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransactionWithEncryptedPassword">
+      <soap:operation soapAction="urn:startDepositTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lowerLifts">
+      <soap:operation soapAction="urn:lowerLifts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashIn">
+      <soap:operation soapAction="urn:cashIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deviceSummary">
+      <soap:operation soapAction="urn:deviceSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionList">
+      <soap:operation soapAction="urn:transactionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransactionWithEncryptedPassword">
+      <soap:operation soapAction="urn:startCountingTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMixes">
+      <soap:operation soapAction="urn:getMixes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveLocalDevices">
+      <soap:operation soapAction="urn:retrieveLocalDevices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="raiseLifts">
+      <soap:operation soapAction="urn:raiseLifts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDispense">
+      <soap:operation soapAction="urn:cashboxDispense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDeviceState">
+      <soap:operation soapAction="urn:retrieveDeviceState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransactionWithEncryptedPassword">
+      <soap:operation soapAction="urn:startDispenseTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endTransaction">
+      <soap:operation soapAction="urn:endTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workstationConfig">
+      <soap:operation soapAction="urn:workstationConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logonWithEncryptedPassword">
+      <soap:operation soapAction="urn:logonWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reset">
+      <soap:operation soapAction="urn:reset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDeposit">
+      <soap:operation soapAction="urn:cashboxDeposit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logon">
+      <soap:operation soapAction="urn:logon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateMix">
+      <soap:operation soapAction="urn:generateMix" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CashInsightAPIServiceSoap12Binding" type="ns:CashInsightAPIServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="cashInStart">
+      <soap12:operation soapAction="urn:cashInStart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <soap12:operation soapAction="urn:startTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="count">
+      <soap12:operation soapAction="urn:count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listDevices">
+      <soap12:operation soapAction="urn:listDevices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInventory">
+      <soap12:operation soapAction="urn:retrieveInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashInRollback">
+      <soap12:operation soapAction="urn:cashInRollback" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoff">
+      <soap12:operation soapAction="urn:logoff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionSearch">
+      <soap12:operation soapAction="urn:transactionSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="emptyDevice">
+      <soap12:operation soapAction="urn:emptyDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNote">
+      <soap12:operation soapAction="urn:getNote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransaction">
+      <soap12:operation soapAction="urn:startCountingTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="releaseDevice">
+      <soap12:operation soapAction="urn:releaseDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dispense">
+      <soap12:operation soapAction="urn:dispense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableDevice">
+      <soap12:operation soapAction="urn:disableDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTransactionWithEncryptedPassword">
+      <soap12:operation soapAction="urn:startTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionList">
+      <soap12:operation soapAction="urn:businessSessionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransaction">
+      <soap12:operation soapAction="urn:startDispenseTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashInEnd">
+      <soap12:operation soapAction="urn:cashInEnd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlockDevice">
+      <soap12:operation soapAction="urn:unlockDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="systemStatus">
+      <soap12:operation soapAction="urn:systemStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reserveDevice">
+      <soap12:operation soapAction="urn:reserveDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionData">
+      <soap12:operation soapAction="urn:businessSessionData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDispensableInventory">
+      <soap12:operation soapAction="urn:retrieveDispensableInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setNote">
+      <soap12:operation soapAction="urn:setNote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransaction">
+      <soap12:operation soapAction="urn:startDepositTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockDevice">
+      <soap12:operation soapAction="urn:lockDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enableDevice">
+      <soap12:operation soapAction="urn:enableDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="freeDevice">
+      <soap12:operation soapAction="urn:freeDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="balanceUser">
+      <soap12:operation soapAction="urn:balanceUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransactionWithEncryptedPassword">
+      <soap12:operation soapAction="urn:startDepositTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lowerLifts">
+      <soap12:operation soapAction="urn:lowerLifts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashIn">
+      <soap12:operation soapAction="urn:cashIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deviceSummary">
+      <soap12:operation soapAction="urn:deviceSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionList">
+      <soap12:operation soapAction="urn:transactionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransactionWithEncryptedPassword">
+      <soap12:operation soapAction="urn:startCountingTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMixes">
+      <soap12:operation soapAction="urn:getMixes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveLocalDevices">
+      <soap12:operation soapAction="urn:retrieveLocalDevices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="raiseLifts">
+      <soap12:operation soapAction="urn:raiseLifts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDispense">
+      <soap12:operation soapAction="urn:cashboxDispense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDeviceState">
+      <soap12:operation soapAction="urn:retrieveDeviceState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransactionWithEncryptedPassword">
+      <soap12:operation soapAction="urn:startDispenseTransactionWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endTransaction">
+      <soap12:operation soapAction="urn:endTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workstationConfig">
+      <soap12:operation soapAction="urn:workstationConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logonWithEncryptedPassword">
+      <soap12:operation soapAction="urn:logonWithEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reset">
+      <soap12:operation soapAction="urn:reset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDeposit">
+      <soap12:operation soapAction="urn:cashboxDeposit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logon">
+      <soap12:operation soapAction="urn:logon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateMix">
+      <soap12:operation soapAction="urn:generateMix" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CashInsightAPIServiceHttpBinding" type="ns:CashInsightAPIServicePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="cashInStart">
+      <http:operation location="CashInsightAPIService/cashInStart" />
+      <wsdl:input>
+        <mime:content part="cashInStart" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cashInStart" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <http:operation location="CashInsightAPIService/startTransaction" />
+      <wsdl:input>
+        <mime:content part="startTransaction" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startTransaction" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="count">
+      <http:operation location="CashInsightAPIService/count" />
+      <wsdl:input>
+        <mime:content part="count" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="count" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listDevices">
+      <http:operation location="CashInsightAPIService/listDevices" />
+      <wsdl:input>
+        <mime:content part="listDevices" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listDevices" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInventory">
+      <http:operation location="CashInsightAPIService/retrieveInventory" />
+      <wsdl:input>
+        <mime:content part="retrieveInventory" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="retrieveInventory" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashInRollback">
+      <http:operation location="CashInsightAPIService/cashInRollback" />
+      <wsdl:input>
+        <mime:content part="cashInRollback" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cashInRollback" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoff">
+      <http:operation location="CashInsightAPIService/logoff" />
+      <wsdl:input>
+        <mime:content part="logoff" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="logoff" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionSearch">
+      <http:operation location="CashInsightAPIService/transactionSearch" />
+      <wsdl:input>
+        <mime:content part="transactionSearch" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="transactionSearch" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="emptyDevice">
+      <http:operation location="CashInsightAPIService/emptyDevice" />
+      <wsdl:input>
+        <mime:content part="emptyDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="emptyDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNote">
+      <http:operation location="CashInsightAPIService/getNote" />
+      <wsdl:input>
+        <mime:content part="getNote" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getNote" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransaction">
+      <http:operation location="CashInsightAPIService/startCountingTransaction" />
+      <wsdl:input>
+        <mime:content part="startCountingTransaction" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startCountingTransaction" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="releaseDevice">
+      <http:operation location="CashInsightAPIService/releaseDevice" />
+      <wsdl:input>
+        <mime:content part="releaseDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="releaseDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dispense">
+      <http:operation location="CashInsightAPIService/dispense" />
+      <wsdl:input>
+        <mime:content part="dispense" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="dispense" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableDevice">
+      <http:operation location="CashInsightAPIService/disableDevice" />
+      <wsdl:input>
+        <mime:content part="disableDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="disableDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startTransactionWithEncryptedPassword">
+      <http:operation location="CashInsightAPIService/startTransactionWithEncryptedPassword" />
+      <wsdl:input>
+        <mime:content part="startTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionList">
+      <http:operation location="CashInsightAPIService/businessSessionList" />
+      <wsdl:input>
+        <mime:content part="businessSessionList" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="businessSessionList" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransaction">
+      <http:operation location="CashInsightAPIService/startDispenseTransaction" />
+      <wsdl:input>
+        <mime:content part="startDispenseTransaction" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startDispenseTransaction" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashInEnd">
+      <http:operation location="CashInsightAPIService/cashInEnd" />
+      <wsdl:input>
+        <mime:content part="cashInEnd" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cashInEnd" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlockDevice">
+      <http:operation location="CashInsightAPIService/unlockDevice" />
+      <wsdl:input>
+        <mime:content part="unlockDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="unlockDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="systemStatus">
+      <http:operation location="CashInsightAPIService/systemStatus" />
+      <wsdl:input>
+        <mime:content part="systemStatus" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="systemStatus" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reserveDevice">
+      <http:operation location="CashInsightAPIService/reserveDevice" />
+      <wsdl:input>
+        <mime:content part="reserveDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="reserveDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="businessSessionData">
+      <http:operation location="CashInsightAPIService/businessSessionData" />
+      <wsdl:input>
+        <mime:content part="businessSessionData" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="businessSessionData" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDispensableInventory">
+      <http:operation location="CashInsightAPIService/retrieveDispensableInventory" />
+      <wsdl:input>
+        <mime:content part="retrieveDispensableInventory" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="retrieveDispensableInventory" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setNote">
+      <http:operation location="CashInsightAPIService/setNote" />
+      <wsdl:input>
+        <mime:content part="setNote" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="setNote" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransaction">
+      <http:operation location="CashInsightAPIService/startDepositTransaction" />
+      <wsdl:input>
+        <mime:content part="startDepositTransaction" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startDepositTransaction" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockDevice">
+      <http:operation location="CashInsightAPIService/lockDevice" />
+      <wsdl:input>
+        <mime:content part="lockDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="lockDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enableDevice">
+      <http:operation location="CashInsightAPIService/enableDevice" />
+      <wsdl:input>
+        <mime:content part="enableDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="enableDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="freeDevice">
+      <http:operation location="CashInsightAPIService/freeDevice" />
+      <wsdl:input>
+        <mime:content part="freeDevice" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="freeDevice" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="balanceUser">
+      <http:operation location="CashInsightAPIService/balanceUser" />
+      <wsdl:input>
+        <mime:content part="balanceUser" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="balanceUser" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDepositTransactionWithEncryptedPassword">
+      <http:operation location="CashInsightAPIService/startDepositTransactionWithEncryptedPassword" />
+      <wsdl:input>
+        <mime:content part="startDepositTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startDepositTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lowerLifts">
+      <http:operation location="CashInsightAPIService/lowerLifts" />
+      <wsdl:input>
+        <mime:content part="lowerLifts" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="lowerLifts" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashIn">
+      <http:operation location="CashInsightAPIService/cashIn" />
+      <wsdl:input>
+        <mime:content part="cashIn" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cashIn" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deviceSummary">
+      <http:operation location="CashInsightAPIService/deviceSummary" />
+      <wsdl:input>
+        <mime:content part="deviceSummary" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="deviceSummary" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transactionList">
+      <http:operation location="CashInsightAPIService/transactionList" />
+      <wsdl:input>
+        <mime:content part="transactionList" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="transactionList" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startCountingTransactionWithEncryptedPassword">
+      <http:operation location="CashInsightAPIService/startCountingTransactionWithEncryptedPassword" />
+      <wsdl:input>
+        <mime:content part="startCountingTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startCountingTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMixes">
+      <http:operation location="CashInsightAPIService/getMixes" />
+      <wsdl:input>
+        <mime:content part="getMixes" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getMixes" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveLocalDevices">
+      <http:operation location="CashInsightAPIService/retrieveLocalDevices" />
+      <wsdl:input>
+        <mime:content part="retrieveLocalDevices" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="retrieveLocalDevices" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="raiseLifts">
+      <http:operation location="CashInsightAPIService/raiseLifts" />
+      <wsdl:input>
+        <mime:content part="raiseLifts" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="raiseLifts" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDispense">
+      <http:operation location="CashInsightAPIService/cashboxDispense" />
+      <wsdl:input>
+        <mime:content part="cashboxDispense" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cashboxDispense" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveDeviceState">
+      <http:operation location="CashInsightAPIService/retrieveDeviceState" />
+      <wsdl:input>
+        <mime:content part="retrieveDeviceState" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="retrieveDeviceState" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startDispenseTransactionWithEncryptedPassword">
+      <http:operation location="CashInsightAPIService/startDispenseTransactionWithEncryptedPassword" />
+      <wsdl:input>
+        <mime:content part="startDispenseTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="startDispenseTransactionWithEncryptedPassword" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endTransaction">
+      <http:operation location="CashInsightAPIService/endTransaction" />
+      <wsdl:input>
+        <mime:content part="endTransaction" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="endTransaction" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workstationConfig">
+      <http:operation location="CashInsightAPIService/workstationConfig" />
+      <wsdl:input>
+        <mime:content part="workstationConfig" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="workstationConfig" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logonWithEncryptedPassword">
+      <http:operation location="CashInsightAPIService/logonWithEncryptedPassword" />
+      <wsdl:input>
+        <mime:content part="logonWithEncryptedPassword" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="logonWithEncryptedPassword" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reset">
+      <http:operation location="CashInsightAPIService/reset" />
+      <wsdl:input>
+        <mime:content part="reset" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="reset" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashboxDeposit">
+      <http:operation location="CashInsightAPIService/cashboxDeposit" />
+      <wsdl:input>
+        <mime:content part="cashboxDeposit" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cashboxDeposit" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logon">
+      <http:operation location="CashInsightAPIService/logon" />
+      <wsdl:input>
+        <mime:content part="logon" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="logon" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateMix">
+      <http:operation location="CashInsightAPIService/generateMix" />
+      <wsdl:input>
+        <mime:content part="generateMix" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="generateMix" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CashInsightAPIService">
+    <wsdl:port name="CashInsightAPIServiceHttpSoap11Endpoint" binding="ns:CashInsightAPIServiceSoap11Binding">
+      <soap:address location="http://localhost:9000/assure/services/CashInsightAPIService.CashInsightAPIServiceHttpSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="CashInsightAPIServiceHttpSoap12Endpoint" binding="ns:CashInsightAPIServiceSoap12Binding">
+      <soap12:address location="http://localhost:9000/assure/services/CashInsightAPIService.CashInsightAPIServiceHttpSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="CashInsightAPIServiceHttpEndpoint" binding="ns:CashInsightAPIServiceHttpBinding">
+      <http:address location="http://localhost:9000/assure/services/CashInsightAPIService.CashInsightAPIServiceHttpEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
