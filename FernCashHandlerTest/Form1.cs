@@ -29,28 +29,34 @@ namespace FernCashHandlerTest
 
             cashHandler.Login(username, password);
 
-            DeviceList deviceList = cashHandler.GetDeviceList();
-            List<string> devices = new List<string>();
+            List<string> deviceList = cashHandler.GetDeviceListExternal();
+            //List<string> devices = new List<string>();
 
-            int count = 0;
+            //int count = 0;
 
-            foreach (Device device in deviceList.data)
-            {
-                devices.Add(device.name + "@" + device.workstation);
-                count++;
-            }
+            //for (int i = 0; i < deviceList.Count; i++ )
+            //{
+            //    devices.Add(deviceList[i]);
+            //}
 
-            comboDevice.DataSource = devices;
+                //foreach (Device device in deviceList.data)
+                //{
+                //    devices.Add(device.name + "@" + device.workstation);
+                //    count++;
+                //}
+
+            comboDevice.DataSource = deviceList;
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-            long amount;
+            long amount, remainder;
             int position, device;
             string currency, authUsername, authPassword;
             bool authorisation;
 
             if (!long.TryParse(txtAmount.Text, out amount)) amount = 0;
+
             currency = comboCurrency.SelectedItem.ToString();
             position = Convert.ToInt32(comboPosition.SelectedItem);
             device = comboDevice.SelectedIndex;
@@ -58,8 +64,41 @@ namespace FernCashHandlerTest
             authUsername = txtAuthUsername.Text;
             authPassword = txtAuthPassword.Text;
 
-            cashHandler.Withdrawal(amount, currency, device, position, authorisation, authUsername, authPassword);
+            //DenominationResult dispensableInventory = cashHandler.GetDispensableInventory(currency, device);
+            DataTable dispensableInventory = cashHandler.GetDispensableInventory(currency, device);
 
+            //TODO: Change mix into datatable inside dll and return
+            //Mix mix = cashHandler.CreateMix(amount, currency, device, position, authorisation, authUsername, authPassword);
+            DataTable mix = cashHandler.CreateMix(amount, currency, device, position, authorisation, authUsername, authPassword);
+
+            dispensableInventory.Columns.Add("Requested", typeof(int));
+
+            for(int i = 0; i < dispensableInventory.Rows.Count; i++)
+            {
+                DataRow row = dispensableInventory.Rows[i];                
+                row["Requested"] = mix.Rows[i]["Requested"];
+                //row["Requested"] = mix.mix.items[i].count;
+                //dispensableInventory.Rows.Add(row);
+            }
+
+            dataGridMix.DataSource = dispensableInventory;
+
+            //dataGridMix.DataSource = dispensableInventory.Select(o => new 
+            //    { Currency = o.currency, Value = o.value, Available = o.count }).ToList();
+
+            remainder = Convert.ToInt64(mix.Rows[0]["Remainder"]);
+
+            if (remainder > 0)
+            {
+                labelRemainder.Text = "Withdrawal Remainder: " + remainder.ToString();
+            }
+            else
+            {
+                labelRemainder.Text = "No Withdrawal Remainder";
+            }
+
+            //TODO: Call dispense function after creating mix - FURTHER: Edit how mix is generated and update dispense with this
+            //cashHandler.Withdrawal(amount, currency, device, position, authorisation, authUsername, authPassword);
         }
 
         private void btnDeposit_Click(object sender, EventArgs e)
@@ -78,6 +117,25 @@ namespace FernCashHandlerTest
             authPassword = txtAuthPassword.Text;
 
             cashHandler.Deposit(amount, currency, device, position, authorisation, authUsername, authPassword);
+        }
+
+        private void btnDispense_Click(object sender, EventArgs e)
+        {
+            long amount;
+            int position, device;
+            string currency, authUsername, authPassword;
+            bool authorisation;
+
+            if (!long.TryParse(txtAmount.Text, out amount)) amount = 0;
+
+            currency = comboCurrency.SelectedItem.ToString();
+            position = Convert.ToInt32(comboPosition.SelectedItem);
+            device = comboDevice.SelectedIndex;
+            authorisation = chkboxAuth.Checked;
+            authUsername = txtAuthUsername.Text;
+            authPassword = txtAuthPassword.Text;
+
+            cashHandler.Dispense(amount, currency, device, position, authorisation, authUsername, authPassword);
         }
     }
 }

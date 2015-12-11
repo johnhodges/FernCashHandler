@@ -48,24 +48,28 @@
             this.txtAuthUsername = new System.Windows.Forms.TextBox();
             this.comboPosition = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.labelRemainder = new System.Windows.Forms.Label();
+            this.dataGridMix = new System.Windows.Forms.DataGridView();
+            this.btnDispense = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridMix)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDeposit
             // 
-            this.btnDeposit.Location = new System.Drawing.Point(15, 399);
+            this.btnDeposit.Location = new System.Drawing.Point(15, 361);
             this.btnDeposit.Name = "btnDeposit";
             this.btnDeposit.Size = new System.Drawing.Size(75, 23);
-            this.btnDeposit.TabIndex = 0;
+            this.btnDeposit.TabIndex = 9;
             this.btnDeposit.Text = "Deposit";
             this.btnDeposit.UseVisualStyleBackColor = true;
             this.btnDeposit.Click += new System.EventHandler(this.btnDeposit_Click);
             // 
             // btnWithdraw
             // 
-            this.btnWithdraw.Location = new System.Drawing.Point(96, 399);
+            this.btnWithdraw.Location = new System.Drawing.Point(96, 361);
             this.btnWithdraw.Name = "btnWithdraw";
             this.btnWithdraw.Size = new System.Drawing.Size(75, 23);
-            this.btnWithdraw.TabIndex = 1;
+            this.btnWithdraw.TabIndex = 10;
             this.btnWithdraw.Text = "Withdraw";
             this.btnWithdraw.UseVisualStyleBackColor = true;
             this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
@@ -85,14 +89,14 @@
             this.txtUsername.Location = new System.Drawing.Point(73, 6);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(100, 20);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(73, 32);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 1;
             // 
             // label1
             // 
@@ -117,7 +121,7 @@
             this.txtAmount.Location = new System.Drawing.Point(73, 92);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(100, 20);
-            this.txtAmount.TabIndex = 7;
+            this.txtAmount.TabIndex = 3;
             // 
             // label3
             // 
@@ -152,7 +156,7 @@
             this.comboDevice.Location = new System.Drawing.Point(73, 145);
             this.comboDevice.Name = "comboDevice";
             this.comboDevice.Size = new System.Drawing.Size(121, 21);
-            this.comboDevice.TabIndex = 12;
+            this.comboDevice.TabIndex = 5;
             // 
             // comboCurrency
             // 
@@ -162,7 +166,7 @@
             this.comboCurrency.Location = new System.Drawing.Point(73, 118);
             this.comboCurrency.Name = "comboCurrency";
             this.comboCurrency.Size = new System.Drawing.Size(121, 21);
-            this.comboCurrency.TabIndex = 13;
+            this.comboCurrency.TabIndex = 4;
             // 
             // chkboxAuth
             // 
@@ -197,14 +201,14 @@
             this.txtAuthPassword.Location = new System.Drawing.Point(137, 317);
             this.txtAuthPassword.Name = "txtAuthPassword";
             this.txtAuthPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtAuthPassword.TabIndex = 16;
+            this.txtAuthPassword.TabIndex = 8;
             // 
             // txtAuthUsername
             // 
             this.txtAuthUsername.Location = new System.Drawing.Point(137, 288);
             this.txtAuthUsername.Name = "txtAuthUsername";
             this.txtAuthUsername.Size = new System.Drawing.Size(100, 20);
-            this.txtAuthUsername.TabIndex = 15;
+            this.txtAuthUsername.TabIndex = 7;
             // 
             // comboPosition
             // 
@@ -215,7 +219,7 @@
             this.comboPosition.Location = new System.Drawing.Point(73, 175);
             this.comboPosition.Name = "comboPosition";
             this.comboPosition.Size = new System.Drawing.Size(121, 21);
-            this.comboPosition.TabIndex = 19;
+            this.comboPosition.TabIndex = 6;
             // 
             // label8
             // 
@@ -226,11 +230,41 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "Position";
             // 
+            // labelRemainder
+            // 
+            this.labelRemainder.AutoSize = true;
+            this.labelRemainder.Location = new System.Drawing.Point(270, 242);
+            this.labelRemainder.Name = "labelRemainder";
+            this.labelRemainder.Size = new System.Drawing.Size(117, 13);
+            this.labelRemainder.TabIndex = 22;
+            this.labelRemainder.Text = "Withdrawal Remainder:";
+            // 
+            // dataGridMix
+            // 
+            this.dataGridMix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridMix.Location = new System.Drawing.Point(273, 12);
+            this.dataGridMix.Name = "dataGridMix";
+            this.dataGridMix.Size = new System.Drawing.Size(537, 215);
+            this.dataGridMix.TabIndex = 23;
+            // 
+            // btnDispense
+            // 
+            this.btnDispense.Location = new System.Drawing.Point(273, 281);
+            this.btnDispense.Name = "btnDispense";
+            this.btnDispense.Size = new System.Drawing.Size(75, 23);
+            this.btnDispense.TabIndex = 24;
+            this.btnDispense.Text = "Dispense";
+            this.btnDispense.UseVisualStyleBackColor = true;
+            this.btnDispense.Click += new System.EventHandler(this.btnDispense_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 451);
+            this.ClientSize = new System.Drawing.Size(822, 475);
+            this.Controls.Add(this.btnDispense);
+            this.Controls.Add(this.dataGridMix);
+            this.Controls.Add(this.labelRemainder);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboPosition);
             this.Controls.Add(this.label6);
@@ -253,6 +287,7 @@
             this.Controls.Add(this.btnDeposit);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridMix)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,6 +315,9 @@
         private System.Windows.Forms.TextBox txtAuthUsername;
         private System.Windows.Forms.ComboBox comboPosition;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelRemainder;
+        private System.Windows.Forms.DataGridView dataGridMix;
+        private System.Windows.Forms.Button btnDispense;
     }
 }
 
