@@ -30,20 +30,6 @@ namespace FernCashHandlerTest
             cashHandler.Login(username, password);
 
             List<string> deviceList = cashHandler.GetDeviceListExternal();
-            //List<string> devices = new List<string>();
-
-            //int count = 0;
-
-            //for (int i = 0; i < deviceList.Count; i++ )
-            //{
-            //    devices.Add(deviceList[i]);
-            //}
-
-                //foreach (Device device in deviceList.data)
-                //{
-                //    devices.Add(device.name + "@" + device.workstation);
-                //    count++;
-                //}
 
             comboDevice.DataSource = deviceList;
         }
@@ -67,7 +53,6 @@ namespace FernCashHandlerTest
             //DenominationResult dispensableInventory = cashHandler.GetDispensableInventory(currency, device);
             DataTable dispensableInventory = cashHandler.GetDispensableInventory(currency, device);
 
-            //TODO: Change mix into datatable inside dll and return
             //Mix mix = cashHandler.CreateMix(amount, currency, device, position, authorisation, authUsername, authPassword);
             DataTable mix = cashHandler.CreateMix(amount, currency, device, position, authorisation, authUsername, authPassword);
 
@@ -97,7 +82,7 @@ namespace FernCashHandlerTest
                 labelRemainder.Text = "No Withdrawal Remainder";
             }
 
-            //TODO: Call dispense function after creating mix - FURTHER: Edit how mix is generated and update dispense with this
+            //TODO: Edit how mix is generated and update dispense with this
             //cashHandler.Withdrawal(amount, currency, device, position, authorisation, authUsername, authPassword);
         }
 

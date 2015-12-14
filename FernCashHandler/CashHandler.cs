@@ -56,7 +56,6 @@ namespace FernCashHandler
             IntegerList integerList = integerListResult.data;
             int algorithm = Convert.ToInt32(integerList.list[0]);
 
-            //TODO: Handle remainder after a mix is generated, display along with mix generation screen.
             MixResult mixResult = client.generateMix(session.data, transactionID, amount, currency, device, algorithm);
             Mix mix = mixResult.data;
 
@@ -254,7 +253,6 @@ namespace FernCashHandler
                 newRow["Workstation"] = deviceList.data[i].workstation;
                 dtDeviceList.Rows.Add(newRow);
             }
-
             return deviceNames;
         }
 
@@ -273,7 +271,7 @@ namespace FernCashHandler
             {
                 inventoryItems.Add(item);
             }
-            
+
             DataTable dt = new DataTable("Table");
 
             dt.Columns.AddRange(new DataColumn[]{
@@ -290,7 +288,6 @@ namespace FernCashHandler
                 newRow["Value"] = dispensableInveontry.data.items[i].value;
                 dt.Rows.Add(newRow);
             }
-
             return dt;
         }
     }
