@@ -37,6 +37,7 @@ namespace FernCashHandlerTest
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
             long amount, remainder;
+            long grandTotal = 0;
             int position, device;
             string currency, authUsername, authPassword;
             bool authorisation;
@@ -58,14 +59,20 @@ namespace FernCashHandlerTest
 
             dispensableInventory.Columns.Add("Requested", typeof(int));
 
+            //Add total column - total of the number of notes request combined with their value - WIP
+            dispensableInventory.Columns.Add("Total", typeof(int));
+
             for(int i = 0; i < dispensableInventory.Rows.Count; i++)
             {
                 DataRow row = dispensableInventory.Rows[i];                
                 row["Requested"] = mix.Rows[i]["Requested"];
+                //WIP
+                row["Total"] = Convert.ToInt32(dispensableInventory.Rows[i]["Requested"]) * Convert.ToInt32(dispensableInventory.Rows[i]["Value"]);
+                grandTotal = grandTotal + Convert.ToInt64(dispensableInventory.Rows[i]["Total"]);
                 //row["Requested"] = mix.mix.items[i].count;
                 //dispensableInventory.Rows.Add(row);
             }
-
+            
             dataGridMix.DataSource = dispensableInventory;
 
             //dataGridMix.DataSource = dispensableInventory.Select(o => new 
@@ -80,6 +87,15 @@ namespace FernCashHandlerTest
             else
             {
                 labelRemainder.Text = "No Withdrawal Remainder";
+            }
+
+            if (grandTotal > 0)
+            {
+                labelTotal.Text = "Total: " + grandTotal.ToString();
+            }
+            else
+            {
+                labelTotal.Text = "Total:";
             }
 
             //TODO: Edit how mix is generated and update dispense with this
@@ -104,12 +120,13 @@ namespace FernCashHandlerTest
             cashHandler.Deposit(amount, currency, device, position, authorisation, authUsername, authPassword);
         }
 
-        private void btnDispense_Click(object sender, EventArgs e)
+        private void btnRecalculate_Click(object sender, EventArgs e)
         {
             long amount;
             int position, device;
             string currency, authUsername, authPassword;
             bool authorisation;
+            List<int> mixRequested = new List<int>();
 
             if (!long.TryParse(txtAmount.Text, out amount)) amount = 0;
 
@@ -120,7 +137,16 @@ namespace FernCashHandlerTest
             authUsername = txtAuthUsername.Text;
             authPassword = txtAuthPassword.Text;
 
-            cashHandler.Dispense(amount, currency, device, position, authorisation, authUsername, authPassword);
+            //Getting datagrid values and adding to list - WIP
+
+            foreach (DataGridViewRow row in dataGridMix.Rows)
+            {
+                mixRequested.Add(Convert.ToInt32(row.Cells[3].Value));
+            }
+
+            //TODO: Add list parameter to dispense method - change mix values to those of list values
+            //TODO: Change method to recalculate mix - Add dispense button
+            cashHandler.Recalculate(amount, currency, device, position, authorisation, authUsername, authPassword);
         }
     }
 }

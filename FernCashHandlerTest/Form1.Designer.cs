@@ -50,7 +50,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.labelRemainder = new System.Windows.Forms.Label();
             this.dataGridMix = new System.Windows.Forms.DataGridView();
-            this.btnDispense = new System.Windows.Forms.Button();
+            this.btnRecalculate = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCashbox = new System.Windows.Forms.TextBox();
+            this.labelUnallocated = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMix)).BeginInit();
             this.SuspendLayout();
             // 
@@ -247,22 +251,60 @@
             this.dataGridMix.Size = new System.Drawing.Size(537, 215);
             this.dataGridMix.TabIndex = 23;
             // 
-            // btnDispense
+            // btnRecalculate
             // 
-            this.btnDispense.Location = new System.Drawing.Point(273, 281);
-            this.btnDispense.Name = "btnDispense";
-            this.btnDispense.Size = new System.Drawing.Size(75, 23);
-            this.btnDispense.TabIndex = 24;
-            this.btnDispense.Text = "Dispense";
-            this.btnDispense.UseVisualStyleBackColor = true;
-            this.btnDispense.Click += new System.EventHandler(this.btnDispense_Click);
+            this.btnRecalculate.Location = new System.Drawing.Point(273, 281);
+            this.btnRecalculate.Name = "btnRecalculate";
+            this.btnRecalculate.Size = new System.Drawing.Size(75, 23);
+            this.btnRecalculate.TabIndex = 24;
+            this.btnRecalculate.Text = "Recalculate";
+            this.btnRecalculate.UseVisualStyleBackColor = true;
+            this.btnRecalculate.Click += new System.EventHandler(this.btnRecalculate_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(367, 286);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Cashbox";
+            // 
+            // txtCashbox
+            // 
+            this.txtCashbox.Location = new System.Drawing.Point(421, 281);
+            this.txtCashbox.Name = "txtCashbox";
+            this.txtCashbox.Size = new System.Drawing.Size(100, 20);
+            this.txtCashbox.TabIndex = 26;
+            // 
+            // labelUnallocated
+            // 
+            this.labelUnallocated.AutoSize = true;
+            this.labelUnallocated.Location = new System.Drawing.Point(270, 317);
+            this.labelUnallocated.Name = "labelUnallocated";
+            this.labelUnallocated.Size = new System.Drawing.Size(67, 13);
+            this.labelUnallocated.TabIndex = 27;
+            this.labelUnallocated.Text = "Unallocated:";
+            // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Location = new System.Drawing.Point(418, 317);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(34, 13);
+            this.labelTotal.TabIndex = 28;
+            this.labelTotal.Text = "Total:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 475);
-            this.Controls.Add(this.btnDispense);
+            this.Controls.Add(this.labelTotal);
+            this.Controls.Add(this.labelUnallocated);
+            this.Controls.Add(this.txtCashbox);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnRecalculate);
             this.Controls.Add(this.dataGridMix);
             this.Controls.Add(this.labelRemainder);
             this.Controls.Add(this.label8);
@@ -317,7 +359,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelRemainder;
         private System.Windows.Forms.DataGridView dataGridMix;
-        private System.Windows.Forms.Button btnDispense;
+        private System.Windows.Forms.Button btnRecalculate;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCashbox;
+        private System.Windows.Forms.Label labelUnallocated;
+        private System.Windows.Forms.Label labelTotal;
     }
 }
 

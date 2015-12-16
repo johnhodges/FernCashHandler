@@ -102,7 +102,6 @@ namespace FernCashHandler
             IntegerList integerList = integerListResult.data;
             int algorithm = Convert.ToInt32(integerList.list[0]);
 
-            //TODO: Handle remainder after a mix is generated, display along with mix generation screen.
             MixResult mixResult = client.generateMix(session.data, transactionID, amount, currency, device, algorithm);
             Mix mix = mixResult.data;
 
@@ -129,11 +128,11 @@ namespace FernCashHandler
             }
 
             return dtMix;
-            //return mix;
         }
 
-        //TODO: Work out how to account for new input values - generate new mix
-        public void Dispense(long amount, string currency, int deviceNumber, int position, bool authorisationRequired, string secondUsername, string secondPassword)
+        //TODO: Work out how to account for new input values - generate new mix, handle remainder - NEED TO DO CASHBOX DISPENSE
+        //TODO: Display grand total of withdrawal as well as unallocated cash. Prevent dispense unless unallocated cash is equal to 0, and grand total is equal to requested amount.
+        public void Recalculate(long amount, string currency, int deviceNumber, int position, bool authorisationRequired, string secondUsername, string secondPassword)
         {
             DeviceList deviceList = GetDeviceListInternal();
             Device device = new Device();
